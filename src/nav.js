@@ -2,24 +2,8 @@ import React from "react";
 import { Button,View,Text } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from "./pages/account/index"
-
-function HomeScreen({ navigation }) {
-   return (
-        <View style={{ flex:1, alignItems: 'center', justifyContent:"center"}}>
-          <Text>HomeScreen</Text>
-          <Button title="Go to Details" onPress={ () =>navigation.navigate('Details')}></Button>
-        </View>
-   );
-}
-
-function DetailsScreen() {
-    return (
-        <View style={{ flex:1, alignItems:'center', justifyContent:"center"}}>
-            <Text>Details Screen</Text>
-        </View>
-    )
-}
+import Login from "./pages/account/login/index"
+import Demo from "./pages/Demo/Demo"
 
 const Stack = createStackNavigator();
    
@@ -27,9 +11,8 @@ const Stack = createStackNavigator();
      return (
        <NavigationContainer>
          <Stack.Navigator headerMode="none" initialRouteName="Login">
+           <Stack.Screen name="Demo" component={Demo}/>
            <Stack.Screen name="Login" component={Login} />
-           <Stack.Screen name="Home" component={HomeScreen} />
-           <Stack.Screen name="Details" component={DetailsScreen} />
          </Stack.Navigator>
        </NavigationContainer>
      );
