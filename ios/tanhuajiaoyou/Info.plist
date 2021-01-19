@@ -38,7 +38,25 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>&apos;允许探花交友访问你的位置，获取你的所在城市&apos;</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>AntDesign.ttf</string>
+		<string>Entypo.ttf</string>
+		<string>Fontisto.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>FontAwesome5_Brands.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>Foundation.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
+		<string>FontAwesome5_Regular.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>Zocial.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -53,23 +71,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-  <key>UIAppFonts</key>
-  <array>
-    <string>AntDesign.ttf</string>
-    <string>Entypo.ttf</string>
-    <string>Fontisto.ttf</string>
-    <string>Octicons.ttf</string>
-    <string>FontAwesome5_Brands.ttf</string>
-    <string>MaterialCommunityIcons.ttf</string>
-    <string>Foundation.ttf</string>
-    <string>Ionicons.ttf</string>
-    <string>FontAwesome5_Solid.ttf</string>
-    <string>FontAwesome5_Regular.ttf</string>
-    <string>FontAwesome.ttf</string>
-    <string>Zocial.ttf</string>
-    <string>EvilIcons.ttf</string>
-    <string>SimpleLineIcons.ttf</string>
-    <string>MaterialIcons.ttf</string>
-  </array>
 </dict>
 </plist>
