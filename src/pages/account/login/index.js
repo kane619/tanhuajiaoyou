@@ -8,8 +8,10 @@ import {ACCOUNT_LOGIN,ACCOUNT_VALIDATEVCODE} from '../../../utils/pathMap'
 import THButton from '../../../components/THButton'
 import {CodeField,Cursor} from 'react-native-confirmation-code-field';
 import Toast from '../../../utils/Toast'
+import {inject,observer} from 'mobx-react'
 
-
+@inject("RootStore") // 注入 用来获取 全局数据的
+@observer //  当全局发生改变了  组件的重新渲染 从而显示最新的数据
 class index extends Component {
     state={
         phoneNumber:'15945612345',
@@ -80,6 +82,7 @@ class index extends Component {
     onVcodeSubmitEditing=async()=>{
         // 对验证码长度校验和后台校验
         // 新用户跳转完善个人信息 老用户跳转首页
+        // 用户数据存放mobx
         const {vcodeTxt,phoneNumber}= this.state;
         if(vcodeTxt.length!=6){
           Toast.message("验证码不正确",2000,"center");
@@ -93,6 +96,8 @@ class index extends Component {
       if(res.code!="10000"){
           return;
       }
+    //   存储用户数据到mobx中
+      this.props.RootStore.setUserInfo(phoneNumber,res.data.token,res.data.id)
       if(res.data.isNew) {
           //新用户 UserInfo
           this.props.navigation.navigate("UserInfo")

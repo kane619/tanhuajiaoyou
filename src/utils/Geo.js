@@ -9,8 +9,8 @@ class Geo {
         PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION,
     ]);
     await init({
-        ios: "d0d49938f5a6648cc316fb1eca420cb6	",
-        android: "d0d49938f5a6648cc316fb1eca420cb6	"
+        ios: "d0d49938f5a6648cc316fb1eca420cb6",
+        android: "d0d49938f5a6648cc316fb1eca420cb6"
     });
     return Promise.resolve();
     }
@@ -24,8 +24,8 @@ class Geo {
     }
     async getCityByLocation() {
         await init({
-            ios: "d0d49938f5a6648cc316fb1eca420cb6	",
-            android: "d0d49938f5a6648cc316fb1eca420cb6	"
+            ios: "d0d49938f5a6648cc316fb1eca420cb6",
+            android: "d0d49938f5a6648cc316fb1eca420cb6"
         });    
     const { longitude, latitude } = await this.getCurrentPosition();
     const res = await axios.get("https://restapi.amap.com/v3/geocode/regeo", {

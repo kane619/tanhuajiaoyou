@@ -39,6 +39,8 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>&apos;允许探花交友访问你的位置，获取你的所在城市&apos;</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>&apos;允许探花交友访问你的位置，获取你的所在城市&apos;</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
@@ -57,6 +59,10 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>MaterialIcons.ttf</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>允许&apos;探花交友&apos;访问相机以拍照上传头像</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>允许&apos;探花交友&apos;访问相册以上传头像</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

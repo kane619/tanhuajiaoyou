@@ -1,13 +1,27 @@
-import React,{Component} from "react";
-import { View,Text,TouchableOpacity } from "react-native";
+import React from "react";
+import { View,Text,TouchableOpacity,Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { pxToDp } from '../../../utils/stylesKits'
 import SvgUri from 'react-native-svg-uri'
 import {male,female} from "../../../res/fonts/iconSvg"
 import {Input} from 'react-native-elements'
 import DatePicker from 'react-native-datepicker'
+import Geo from '../../../utils/Geo'
+import Picker from 'react-native-picker';
+import CityJson from '../../../res/citys.json'
+import THButton from '../../../components/THButton'
+import Toast from '../../../utils/Toast'
+import ImagePicker from 'react-native-image-crop-picker';
+import { Overlay } from "teaset";
+import {inject,observer} from 'mobx-react'
+import { ACCOUNT_CHECKHEADIMAGE } from "../../../utils/pathMap";
+import request from '../../../utils/request'
 
-class index extends Component {
+
+@inject("RootStore") // 注入 用来获取 全局数据的
+@observer //  当全局发生改变了  组件的重新渲染 从而显示最新的数据
+class index extends React.Component {
+
     state = {
         nickname: "", 
         gender: "男",
@@ -20,12 +34,105 @@ class index extends Component {
         lat: "",
         address: ""
     }
+    async componentDidMount() {
+        console.log(this.props);
+        const res = await Geo.getCityByLocation();
+        console.log(res);
+        // const address = res.regeocode.addressComponent.formatted_address
+        // const city = res.regeocode.addressComponent.city.replace("市","");
+        // this.setState({address,city});
+    }
     // 选择性别
     chooseGender=(gender)=>{
         this.setState({gender})
     }
+    // 选择城市
+    showCityPicker = () => {
+        console.log("选择城市")        
+        Picker.init({
+            pickerData: CityJson,
+            selectedValue: ["北京", "北京"],
+            wheelFlex: [1, 1, 0], // 显示省和市
+            pickerConfirmBtnText: "确定",
+            pickerCancelBtnText: "取消",
+            pickerTitleText: "选择城市",
+            onPickerConfirm: data => {
+              // data =  [广东，广州，天河]
+              this.setState(
+                {
+                  city: data[1]
+                }
+              );
+            }
+          });
+        Picker.show();
+    }
+    // 点击设置头像按钮
+    chooseHeadImg = async () =>{
+        // 1 交易前面是否为空
+        // 2 使用图片裁剪插件
+        // 3 将选择好的图片 上传到后台
+        // 4. 表单上传 完成信息填写
+        // 5 成功 // 1.执行 极光注册 极光登录 2.跳转交友首页
+        const {nickname,birthday,city}=this.state;
+        if (!nickname||!birthday||!city) {
+           Toast.sad("昵称或者生日或者城市不合法",2000,"center");
+            return
+        }
+        // 获取到 选中后的图片
+        const image = await ImagePicker.openPicker({
+            width: 300,
+            height: 400,
+            cropping: true
+        }); 
+        console.log(image);
+        // 显示审核中效果
+        let overlayView = (
+            <Overlay.View
+              style={{flex:1,backgroundColor:"#000"}}
+              modal={true}
+              overlayOpacity={0}
+              ref={v => this.overlayView = v}>
+              <View style={{marginTop:pxToDp(50),alignSelf:"center",width:334,height:334,position:"relative",justifyContent:"center",alignItems:"center" }}>
+                <Image style={{width:"100%",height:"100%",
+                position:"absolute",left:0,top:0,zIndex:100}} 
+                source={require("../../../res/scan.gif")}/>
+                <Image source={{uri:image.path}} style={{width:"60%",height:"60%"}}/>
+              </View>
+            </Overlay.View>
+          );
+        Overlay.show(overlayView);
+        // 上传头像
+        const res0 = await this.uploadHeadImg()
+        if(res0.code==="10000"){ //上传成功
+
+        }else{
+
+        }
+        console.log(res0);
+    }
+    // 上传头像
+    uploadHeadImg =() =>{
+         // 构造参数
+        let formData = new FormData();
+        formData.append("headPhoto",{
+           // 本地图片的地址
+            uri: image.path,
+            // 图片的类型
+            type: image.mime,
+            // 图片的名称 file:///store/com/pic/dsf/d343.jpg
+            name: image.path.split("/").pop()
+        })
+        // 执行头像上传
+        return request.post(ACCOUNT_CHECKHEADIMAGE,formData,{
+            headers:{
+                "Content-Type": "multipart/form-data",
+                "Authorization":`Bearer ${this.props.RootStore.token}`
+            }
+        })
+    }
     render() {
-        const {gender,nickname,birthday}=this.state;
+        const {gender,nickname,birthday,address,city}=this.state;
         const dateNow = new Date();
         const currentDate=`${dateNow.getFullYear()}-${dateNow.getMonth()+1}-${dateNow.getDate}`
         return (
@@ -68,6 +175,7 @@ class index extends Component {
                 maxDate={currentDate}
                 confirmBtnText="确定"
                 cancelBtnText="取消"
+                useNativeDriver="true"
                 customStyles={{
                 dateIcon: {
                     display: "none",
@@ -87,6 +195,20 @@ class index extends Component {
                 }}
                 onDateChange={(birthday) => {this.setState({birthday})}}
       />
+            </View>
+            {/* 地址 */}
+            <View style={{marginTop:pxToDp(20)}} >
+                {/* <TouchableOpacity style={{height:20}} onPress={this.showCityPicker} backgroundColor="red"> */}
+                <Input 
+                  value={"当前定位:"+city}
+                  inputStyle={{color: "#666"}}
+                  onFocus={this.showCityPicker}
+                />
+                {/* </TouchableOpacity> */}
+            </View>
+            {/* 选择头像 */}
+            <View> 
+             <THButton onPress={this.chooseHeadImg} style={{height:pxToDp(40),borderRadius:pxToDp(20),alignSelf:"center"}}>设置头像</THButton>
             </View>
             </SafeAreaView>
         );
