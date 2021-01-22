@@ -14,7 +14,7 @@ import {inject,observer} from 'mobx-react'
 @observer //  当全局发生改变了  组件的重新渲染 从而显示最新的数据
 class index extends Component {
     state={
-        phoneNumber:'15945612345',
+        phoneNumber:'18812345601',
         phoneValid:true,
         // 是否显示登陆界面
         showLogin:true,

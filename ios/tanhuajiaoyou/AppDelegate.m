@@ -4,9 +4,6 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
-//#import <AMapFoundationKit/AMapFoundationKit.h>
-//#import <AMapLocationKit/AMapLocationKit.h>
-
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
 #import <FlipperKitLayoutPlugin/FlipperKitLayoutPlugin.h>
@@ -14,6 +11,8 @@
 #import <FlipperKitNetworkPlugin/FlipperKitNetworkPlugin.h>
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
+
+#import <RCTJMessageModule.h>
 
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
@@ -46,8 +45,24 @@ static void InitializeFlipper(UIApplication *application) {
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-//  [AMapServices sharedServices].apiKey = @"d0d49938f5a6648cc316fb1eca420cb6";
+
+  [JMessage setupJMessage:launchOptions
+                      appKey:@"48cbc7cca1373cf1c2fe812f"
+                     channel:@""
+            apsForProduction:true
+                    category:nil
+              messageRoaming:true];
+     
+     [JMessage addDelegate:self withConversation:nil];
+  
   return YES;
+}
+
+//JMessage 离线消息监听
+- (void)onSyncOfflineMessageConversation:(JMSGConversation *)conversation
+                         offlineMessages:(NSArray JMSG_GENERIC ( __kindof JMSGMessage *) *)offlineMessages {
+  [RCTJMessageEventQueue sharedInstance].offlineConversation = conversation;
+  [RCTJMessageEventQueue sharedInstance].offlineMsgArray = offlineMessages;
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge

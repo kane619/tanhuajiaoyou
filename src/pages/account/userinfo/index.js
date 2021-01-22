@@ -14,9 +14,9 @@ import Toast from '../../../utils/Toast'
 import ImagePicker from 'react-native-image-crop-picker';
 import { Overlay } from "teaset";
 import {inject,observer} from 'mobx-react'
-import { ACCOUNT_CHECKHEADIMAGE } from "../../../utils/pathMap";
+import { ACCOUNT_CHECKHEADIMAGE, ACCOUNT_REGINFO } from "../../../utils/pathMap";
 import request from '../../../utils/request'
-
+import JMessage from '../../../utils/JMessage'
 
 @inject("RootStore") // 注入 用来获取 全局数据的
 @observer //  当全局发生改变了  组件的重新渲染 从而显示最新的数据
@@ -29,10 +29,10 @@ class index extends React.Component {
         city: "",
         header: "",
         // 经度
-        lng: "",
+        lng: "120.646779",
         // 纬度
-        lat: "",
-        address: ""
+        lat: "31.244261",
+        address: "sdfg"
     }
     async componentDidMount() {
         console.log(this.props);
@@ -40,7 +40,9 @@ class index extends React.Component {
         console.log(res);
         // const address = res.regeocode.addressComponent.formatted_address
         // const city = res.regeocode.addressComponent.city.replace("市","");
-        // this.setState({address,city});
+        // const lng = regeocode.addressComponent.streetNumber.locations.split(",")[0];
+        // const lat = regeocode.addressComponent.streetNumber.locations.split(",")[1];
+        // this.setState({address,city,lng,lat});
     }
     // 选择性别
     chooseGender=(gender)=>{
@@ -86,13 +88,14 @@ class index extends React.Component {
             cropping: true
         }); 
         console.log(image);
+        let overlayViewRef=null;
         // 显示审核中效果
         let overlayView = (
             <Overlay.View
               style={{flex:1,backgroundColor:"#000"}}
               modal={true}
               overlayOpacity={0}
-              ref={v => this.overlayView = v}>
+              ref={v => overlayViewRef = v}>
               <View style={{marginTop:pxToDp(50),alignSelf:"center",width:334,height:334,position:"relative",justifyContent:"center",alignItems:"center" }}>
                 <Image style={{width:"100%",height:"100%",
                 position:"absolute",left:0,top:0,zIndex:100}} 
@@ -103,16 +106,34 @@ class index extends React.Component {
           );
         Overlay.show(overlayView);
         // 上传头像
-        const res0 = await this.uploadHeadImg()
-        if(res0.code==="10000"){ //上传成功
-
-        }else{
-
+        const res0 = await this.uploadHeadImg(image)
+        if(res0.code !== "10000"){ //上传成功
+        //    失败
+           return;
         }
-        console.log(res0);
+    //    构造参数完善个人信息
+       let params = this.state;
+       params.header = res0.data.headImgPath;
+       console.log(params);
+       const res1 = await request.privatePost(ACCOUNT_REGINFO,params)
+    //    console.log(res1);
+       if (res1.code!=="10000"){
+           console.log(res1);
+           return;
+       }
+    //    注册极光
+       const res2 = await this.jgBusiness(this.props.RootStore.userId,this.props.RootStore.mobile);
+    //    console.log(res2); 
+    // 关闭浮层
+    overlayViewRef.close();
+    Toast.smile("恭喜 操作成功",2000,"center");
+    setTimeout(()=>{
+       alert("跳转交友界面")
+    },2000)
+
     }
     // 上传头像
-    uploadHeadImg =() =>{
+    uploadHeadImg =(image) =>{
          // 构造参数
         let formData = new FormData();
         formData.append("headPhoto",{
@@ -124,12 +145,15 @@ class index extends React.Component {
             name: image.path.split("/").pop()
         })
         // 执行头像上传
-        return request.post(ACCOUNT_CHECKHEADIMAGE,formData,{
+        return request.privatePost(ACCOUNT_CHECKHEADIMAGE,formData,{
             headers:{
                 "Content-Type": "multipart/form-data",
-                "Authorization":`Bearer ${this.props.RootStore.token}`
             }
         })
+    }
+    // 执行极光的注册
+    jgBusiness = (username, password)=>{
+        return JMessage.register(username, password)
     }
     render() {
         const {gender,nickname,birthday,address,city}=this.state;
