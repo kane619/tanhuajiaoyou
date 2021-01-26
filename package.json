@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.12.12",
+    "@react-native-async-storage/async-storage": "^1.13.3",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.9.0",
     "@react-navigation/stack": "^5.12.8",
@@ -34,6 +35,7 @@
     "react-native-screens": "^2.16.1",
     "react-native-svg": "^12.1.0",
     "react-native-svg-uri": "^1.2.3",
+    "react-native-tab-navigator": "^0.3.4",
     "react-native-vector-icons": "^7.1.0",
     "teaset": "^0.7.5"
   },

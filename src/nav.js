@@ -5,19 +5,22 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from "./pages/account/login"
 import Demo from "./pages/Demo/Demo"
 import UserInfo from "./pages/account/userinfo"
+import Tabbar from "./tabbar"
 
 const Stack = createStackNavigator();
-   
-   function Nav() {
+  class Nav extends React.Component {
+    state = {}
+    render() {
      return (
        <NavigationContainer>
-         <Stack.Navigator headerMode="none" initialRouteName="Login">
+         <Stack.Navigator headerMode="none" initialRouteName="Tabbar">
            <Stack.Screen name="Demo" component={Demo}/>
            <Stack.Screen name="Login" component={Login}/>
            <Stack.Screen name="UserInfo" component={UserInfo}/>
+           <Stack.Screen name="Tabbar" component={Tabbar}/>
          </Stack.Navigator>
        </NavigationContainer>
      );
-   }
+    }
+  }
    
-   export default Nav;

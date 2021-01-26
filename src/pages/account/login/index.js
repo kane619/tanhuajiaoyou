@@ -9,6 +9,7 @@ import THButton from '../../../components/THButton'
 import {CodeField,Cursor} from 'react-native-confirmation-code-field';
 import Toast from '../../../utils/Toast'
 import {inject,observer} from 'mobx-react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 @inject("RootStore") // 注入 用来获取 全局数据的
 @observer //  当全局发生改变了  组件的重新渲染 从而显示最新的数据
@@ -98,6 +99,12 @@ class index extends Component {
       }
     //   存储用户数据到mobx中
       this.props.RootStore.setUserInfo(phoneNumber,res.data.token,res.data.id)
+    //   存储用户数据到 本地缓存中 永久
+    AsyncStorage.setItem("userinfo",JSON.stringify({
+        mobile:phoneNumber,
+        token:res.data.token,
+        userId:res.data.userId
+    }))
       if(res.data.isNew) {
           //新用户 UserInfo
           this.props.navigation.navigate("UserInfo")
