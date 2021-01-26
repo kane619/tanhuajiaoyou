@@ -72,7 +72,7 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - JCore (1.9.1):
+  - JCore (1.9.0):
     - React
   - JMessageRN (3.1.9):
     - React
@@ -314,16 +314,18 @@ PODS:
     - React-Core (= 0.63.4)
     - React-cxxreact (= 0.63.4)
     - React-jsi (= 0.63.4)
+  - RNCAsyncStorage (1.13.3):
+    - React-Core
   - RNCMaskedView (0.1.10):
     - React
   - RNGestureHandler (1.9.0):
     - React-Core
-  - RNImageCropPicker (0.35.2):
+  - RNImageCropPicker (0.35.1):
     - React-Core
     - React-RCTImage
-    - RNImageCropPicker/QBImagePickerController (= 0.35.2)
+    - RNImageCropPicker/QBImagePickerController (= 0.35.1)
     - TOCropViewController
-  - RNImageCropPicker/QBImagePickerController (0.35.2):
+  - RNImageCropPicker/QBImagePickerController (0.35.1):
     - React-Core
     - React-RCTImage
     - TOCropViewController
@@ -393,6 +395,7 @@ DEPENDENCIES:
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
@@ -483,6 +486,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNCAsyncStorage:
+    :path: "../node_modules/@react-native-async-storage/async-storage"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
   RNGestureHandler:
@@ -519,10 +524,10 @@ SPEC CHECKSUMS:
   FlipperKit: ab353d41aea8aae2ea6daaf813e67496642f3d7d
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
-  JCore: 5936f37a39dc042e7f0682bd061a7c52d617b236
+  JCore: 1cb4afdeb092d8d0830e889012283c19056af8ab
   JMessageRN: 57561843378f9816484b7a0228b8665980fca310
   OpenSSL-Universal: ff34003318d5e1163e9529b08470708e389ffcdd
-  Picker: 4f1722c94059567cabd80e53d0ef72ca290d2b93
+  Picker: 37554355aef82a532ea95b71b6eeba66bc86182b
   RCTRequired: 082f10cd3f905d6c124597fd1c14f6f2655ff65e
   RCTTypeSafety: 8c9c544ecbf20337d069e4ae7fd9a377aadf504b
   React: b0a957a2c44da4113b0c4c9853d8387f8e64e615
@@ -533,8 +538,8 @@ SPEC CHECKSUMS:
   React-jsi: a0418934cf48f25b485631deb27c64dc40fb4c31
   React-jsiexecutor: 93bd528844ad21dc07aab1c67cb10abae6df6949
   React-jsinspector: 58aef7155bc9a9683f5b60b35eccea8722a4f53a
-  react-native-amap-geolocation: 88ff278e42786293fce80edea486876de4686946
-  react-native-safe-area-context: 86612d2c9a9e94e288319262d10b5f93f0b395f5
+  react-native-amap-geolocation: 5b42219a67e29b4c1ce0b75faf3b8869f97e2f7c
+  react-native-safe-area-context: b6e0e284002381d2ff29fa4fff42b4d8282e3c94
   React-RCTActionSheet: 89a0ca9f4a06c1f93c26067af074ccdce0f40336
   React-RCTAnimation: 1bde3ecc0c104c55df246eda516e0deb03c4e49b
   React-RCTBlob: a97d378b527740cc667e03ebfa183a75231ab0f0
@@ -545,9 +550,10 @@ SPEC CHECKSUMS:
   React-RCTText: 5c51df3f08cb9dedc6e790161195d12bac06101c
   React-RCTVibration: ae4f914cfe8de7d4de95ae1ea6cc8f6315d73d9d
   ReactCommon: 73d79c7039f473b76db6ff7c6b159c478acbbb3b
-  RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
+  RNCAsyncStorage: da95b83e241a7f5efe3da1a949b3ec3175380be0
+  RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
   RNGestureHandler: 9b7e605a741412e20e13c512738a31bd1611759b
-  RNImageCropPicker: 9e0bf18cf4184a846fed55747c8e622208b39947
+  RNImageCropPicker: 16951bc02411f50c4d197488ed6406a23dc3b5f1
   RNReanimated: e03f7425cb7a38dcf1b644d680d1bfc91c3337ad
   RNScreens: 45c457af3d2ee9e08fc01e70da87e653d46b1198
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
@@ -558,4 +564,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 25f07365a6226c2ca6e75f63287a8694c033d6b0
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.9.1

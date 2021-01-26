@@ -23,4 +23,6 @@ const Stack = createStackNavigator();
      );
     }
   }
+
+  export default Nav;
    
