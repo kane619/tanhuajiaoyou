@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import IconFont from "../../../../components/IconFont";
-import { pxToDp } from '../../../../utils/stylesKits';
+import IconFont from "../../../components/IconFont";
+import { pxToDp } from '../../../utils/stylesKits';
 import SvgUri from "react-native-svg-uri";
-import { male, female } from "../../../../res/fonts/iconSvg";
+import { male, female } from "../../../res/fonts/iconSvg";
 import Picker from 'react-native-picker';
 import { Slider } from "react-native-elements";
-import CityJson from "../../../../res/citys.json";
-import THButton from "../../../../components/THButton";
+import CityJson from "../../../res/citys.json";
+import THButton from "../../../components/THButton";
 class Index extends Component {
   // gender: "男",
   // distance: 2,
@@ -16,7 +16,14 @@ class Index extends Component {
   // education: ""
   constructor(props) {
     super(props);
-    this.state = JSON.parse(JSON.stringify(this.props.params));
+    // this.state = JSON.parse(JSON.stringify(this.props.params));
+    this.state = {
+        gender: "男",
+        distance: 2,
+        lastLogin: "",
+        city: "",
+        education: ""
+    }
   }
 
   // 选择性别
@@ -110,7 +117,7 @@ class Index extends Component {
         }} >
           <Text></Text>
           <Text style={{ color: "#999", fontSize: pxToDp(28), fontWeight: "bold" }} >筛选</Text>
-          <IconFont onPress={this.props.onClose} style={{ fontSize: pxToDp(30) }} name="iconshibai" />
+          {/* <IconFont onPress={this.props.onClose} style={{ fontSize: pxToDp(30) }} name="iconshibai" /> */}
         </View>
         {/* 1.0 标题 结束 */}
         {/* 2.0 性别 开始 */}

@@ -6,6 +6,7 @@ import Login from "./pages/account/login"
 import Demo from "./pages/Demo/Demo"
 import UserInfo from "./pages/account/userinfo"
 import Tabbar from "./tabbar"
+import Home from "./pages/friend/home"
 
 const Stack = createStackNavigator();
   class Nav extends React.Component {
@@ -18,6 +19,7 @@ const Stack = createStackNavigator();
            <Stack.Screen name="Login" component={Login}/>
            <Stack.Screen name="UserInfo" component={UserInfo}/>
            <Stack.Screen name="Tabbar" component={Tabbar}/>
+           <Stack.Screen name="Home" component={Home}/>
          </Stack.Navigator>
        </NavigationContainer>
      );

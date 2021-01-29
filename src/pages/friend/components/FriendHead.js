@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text,TouchableOpacity } from 'react-native';
 import Svg from "react-native-svg-uri";
-import {tanhua,near,testSoul  } from "../../../../res/fonts/iconSvg";
-import { pxToDp } from '../../../../utils/stylesKits';
+import {tanhua,near,testSoul  } from "../../../res/fonts/iconSvg";
+import { pxToDp } from '../../../utils/stylesKits';
 import { NavigationContext } from "@react-navigation/native";
 class Index extends Component {
   static contextType=NavigationContext;

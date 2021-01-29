@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { View, Text, StatusBar, Image,TouchableOpacity } from 'react-native';
 import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 import { pxToDp } from '../../../utils/stylesKits';
-import FriendHead from "./components/FriendHead";
-import Visitors from "./components/Visitors";
-import PerfectGirl from "./components/PerfectGirl";
+import FriendHead from "../components/FriendHead";
+import Visitors from "../components/Visitors";
+import PerfectGirl from "../components/PerfectGirl";
 import request from "../../../utils/request";
 import { FRIENDS_RECOMMEND, BASE_URI } from "../../../utils/pathMap";
 import IconFont from "../../../components/IconFont";
 import {Overlay  } from "teaset";
-import FilterPanel from "./components/FilterPanel";
+import FilterPanel from "../components/FilterPanel";
 import { NavigationContext } from "@react-navigation/native";
 // id: 7
 // header: "/upload/18665711978.png"
@@ -21,7 +21,7 @@ import { NavigationContext } from "@react-navigation/native";
 // dist: 0
 // agediff: 0
 // fateValue: 40
-class Index extends Component {
+class Home extends Component {
   static contextType=NavigationContext;
   state = {
     // 接口要的数据
@@ -45,6 +45,7 @@ class Index extends Component {
   // 获取推荐朋友
   getRecommends = async (filterParams={}) => {
     const res = await request.privateGet(FRIENDS_RECOMMEND, {...this.state.params,...filterParams});
+    console.log(res.data)
     this.setState({ recommends: res.data });
   }
   // 点击事件 显示 筛选浮层
@@ -73,37 +74,39 @@ class Index extends Component {
   render() {
     const { recommends } = this.state;
     return (
-      <HeaderImageScrollView
-        maxHeight={pxToDp(130)}
-        minHeight={pxToDp(44)}
-        headerImage={require("../../../res/headfriend.png")}
-        renderForeground={() => (
-          <View style={{ height: pxToDp(130), justifyContent: "center", alignItems: "center" }} >
-            <StatusBar backgroundColor={"transparent"} translucent={true} />
-            <FriendHead />
-          </View>
-        )}
-      >
-        <View  >
-          {/* 1.0 访客 开始 */}
-          <Visitors />
-          {/* 1.0 访客 结束 */}
-          <View style={{ height: pxToDp(3), backgroundColor: "#ccc" }} ></View>
-          <PerfectGirl />
-          {/* 2.0 推荐朋友 开始 */}
-          <View>
-            {/* 2.1 标题 开始 */}
-            <View style={{
-              height: pxToDp(40), backgroundColor: "#eee", flexDirection: "row",
-              justifyContent: "space-between", paddingLeft: pxToDp(10), paddingRight: pxToDp(10),
-              alignItems: "center"
-            }}>
-              <Text style={{ color: "#666" }}>推荐</Text>
-              <IconFont onPress={this.recommendFilterShow} style={{ color: "#666" }} name="iconshaixuan" />
-            </View>
-            {/* 2.1 标题 结束 */}
-            {/* 2.2 列表内容 开始 */}
-            <View>
+      // <HeaderImageScrollView
+      //   maxHeight={pxToDp(130)}
+      //   minHeight={pxToDp(44)}
+      //   headerImage={require("../../../res/headfriend.png")}
+      //   renderForeground={() => (
+      //     <View style={{ height: pxToDp(130), justifyContent: "center", alignItems: "center" }} >
+      //       <StatusBar backgroundColor={"transparent"} translucent={true} />
+      //       <FriendHead />
+      //     </View>
+      //   )}
+      // >
+       
+      // </HeaderImageScrollView>
+      <View  >
+      {/* 1.0 访客 开始 */}
+      <Visitors />
+      {/* 1.0 访客 结束 */}
+      <View style={{ height: pxToDp(3), backgroundColor: "#ccc" }} ></View>
+      <PerfectGirl />
+      {/* 2.0 推荐朋友 开始 */}
+      <View>
+        {/* 2.1 标题 开始 */}
+        <View style={{
+          height: pxToDp(40), backgroundColor: "#eee", flexDirection: "row",
+          justifyContent: "space-between", paddingLeft: pxToDp(10), paddingRight: pxToDp(10),
+          alignItems: "center"
+        }}>
+          <Text style={{ color: "#666" }}>推荐</Text>
+          {/* <IconFont onPress={this.recommendFilterShow} style={{ color: "#666" }} name="iconshaixuan" /> */}
+        </View>
+        {/* 2.1 标题 结束 */}
+        {/* 2.2 列表内容 开始 */}
+        <View>
               {recommends.map((v, i) => <TouchableOpacity key={i}
               onPress={()=>this.context.navigate("Detail",{id:v.id})}
                 style={{
@@ -144,12 +147,12 @@ class Index extends Component {
                 </View>
               </TouchableOpacity>)}
             </View>
-            {/* 2.2 列表内容 结束 */}
-          </View>
-          {/* 2.0 推荐朋友 结束 */}
-        </View>
-      </HeaderImageScrollView>
+
+        {/* 2.2 列表内容 结束 */}
+      </View>
+      {/* 2.0 推荐朋友 结束 */}
+    </View>
     );
   }
 }
-export default Index;
+export default Home;

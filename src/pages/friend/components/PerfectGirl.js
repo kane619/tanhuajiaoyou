@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
-import request from "../../../../utils/request";
-import { pxToDp } from "../../../../utils/stylesKits";
-import { FRIENDS_TODAYBEST, BASE_URI } from "../../../../utils/pathMap";
-import IconFont from "../../../../components/IconFont";
+import request from "../../../utils/request";
+import { pxToDp } from "../../../utils/stylesKits";
+import { FRIENDS_TODAYBEST, BASE_URI } from "../../../utils/pathMap";
+import IconFont from "../../../components/IconFont";
 class Index extends Component {
   state = {
     perfectGirl: {
@@ -48,8 +48,8 @@ class Index extends Component {
           <View style={{ flex: 2, justifyContent: "space-around" }} >
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Text style={{ color: "#555" }} >{perfectGirl.nick_name}</Text>
-              <IconFont style={{ fontSize: pxToDp(18), color: perfectGirl.gender === "女" ? "#b564bf" : "red" }}
-                name={perfectGirl.gender === "女" ? "icontanhuanv" : "icontanhuanan"} />
+              {/* <IconFont style={{ fontSize: pxToDp(18), color: perfectGirl.gender === "女" ? "#b564bf" : "red" }}
+                name={perfectGirl.gender === "女" ? "icontanhuanv" : "icontanhuanan"} /> */}
               <Text style={{ color: "#555" }} >{perfectGirl.age}岁</Text>
             </View>
             <View style={{ flexDirection: "row" }}>
@@ -62,7 +62,7 @@ class Index extends Component {
           </View>
           <View style={{ flex: 1,alignItems:"center",justifyContent:"center" }}>
             <View style={{position:"relative",alignItems:"center",justifyContent:"center"}}>
-              <IconFont name="iconxihuan" style={{ fontSize: pxToDp(50), color: "red" }} />
+              {/* <IconFont name="iconxihuan" style={{ fontSize: pxToDp(50), color: "red" }} /> */}
               <Text style={{position:"absolute",color:"#fff",fontSize:pxToDp(13),fontWeight:"bold"}} >{perfectGirl.fateValue}</Text>
             </View>
             <Text style={{color:"red",fontSize:pxToDp(13)}} >缘分值</Text>

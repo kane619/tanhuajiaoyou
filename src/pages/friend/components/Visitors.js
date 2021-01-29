@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text ,Image} from 'react-native';
-import request from "../../../../utils/request";
-import { FRIENDS_VISITORS ,BASE_URI} from "../../../../utils/pathMap";
-import { pxToDp } from '../../../../utils/stylesKits';
+import request from "../../../utils/request";
+import { FRIENDS_VISITORS ,BASE_URI} from "../../../utils/pathMap";
+import { pxToDp } from '../../../utils/stylesKits';
 class Index extends Component {
 
   state = {
