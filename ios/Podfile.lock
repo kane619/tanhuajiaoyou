@@ -72,7 +72,7 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - JCore (1.9.0):
+  - JCore (1.9.1):
     - React
   - JMessageRN (3.1.9):
     - React
@@ -320,12 +320,12 @@ PODS:
     - React
   - RNGestureHandler (1.9.0):
     - React-Core
-  - RNImageCropPicker (0.35.1):
+  - RNImageCropPicker (0.35.2):
     - React-Core
     - React-RCTImage
-    - RNImageCropPicker/QBImagePickerController (= 0.35.1)
+    - RNImageCropPicker/QBImagePickerController (= 0.35.2)
     - TOCropViewController
-  - RNImageCropPicker/QBImagePickerController (0.35.1):
+  - RNImageCropPicker/QBImagePickerController (0.35.2):
     - React-Core
     - React-RCTImage
     - TOCropViewController
@@ -524,7 +524,7 @@ SPEC CHECKSUMS:
   FlipperKit: ab353d41aea8aae2ea6daaf813e67496642f3d7d
   Folly: b73c3869541e86821df3c387eb0af5f65addfab4
   glog: 40a13f7840415b9a77023fbcae0f1e6f43192af3
-  JCore: 1cb4afdeb092d8d0830e889012283c19056af8ab
+  JCore: 1cfe885056beb82e0f5ba5f6157a8cb4387d1cd9
   JMessageRN: 57561843378f9816484b7a0228b8665980fca310
   OpenSSL-Universal: ff34003318d5e1163e9529b08470708e389ffcdd
   Picker: 37554355aef82a532ea95b71b6eeba66bc86182b
@@ -553,7 +553,7 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: da95b83e241a7f5efe3da1a949b3ec3175380be0
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
   RNGestureHandler: 9b7e605a741412e20e13c512738a31bd1611759b
-  RNImageCropPicker: 16951bc02411f50c4d197488ed6406a23dc3b5f1
+  RNImageCropPicker: 9e0bf18cf4184a846fed55747c8e622208b39947
   RNReanimated: e03f7425cb7a38dcf1b644d680d1bfc91c3337ad
   RNScreens: 45c457af3d2ee9e08fc01e70da87e653d46b1198
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
@@ -564,4 +564,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 25f07365a6226c2ca6e75f63287a8694c033d6b0
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.10.1
